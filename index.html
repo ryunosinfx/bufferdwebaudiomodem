@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible">
+    <title>BufferdWebAudioModem- Web Audio Encoder Buffered</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>BufferdWebAudioModem</h1>
+        <div class="config_part">
+            <h2>ErrorCorrectConfig</h2>
+            <div class="config">
+                <div class="pannel">
+                    <h3>ConvolutionalCode</h3>
+                    <div>
+                        <label for="is-use-cc">Is Use ConvolutionalCode?<span data-val></span> </label>
+                        <input id="is-use-cc" type="range" value="1" min="0" , max="1" , step="1">
+                    </div>
+
+                    <div>
+                        <label for="cc-rate">Rate 1/<span data-val></span></label>
+                        <input id="cc-rate" type="range" value="3" min="2" , max="3" , step="1">
+                    </div>
+                </div>
+                <div class="pannel">
+                    <h3>ReedSolomon</h3>
+                    <div>
+                        <label for="is-use-rs">Is Use ReedSolomon?<span data-val></span> </label>
+                        <input id="is-use-rs" type="range" value="1" min="0" , max="1" , step="1">
+                    </div>
+                    <div>
+                        <label for="bit-num">Bit Num r: <span data-val></span> bit</label>
+                        <input id="bit-num" type="range" value="14" min="4" , max="14" , step="2">
+                    </div>
+                    <div>
+                        <label for="error-correct-reduntant-retio">Error Collect Reduntant Retio Parcentage: <span
+                                data-val></span> %</label>
+                        <input id="error-correct-reduntant-retio" type="range" value="100" min="0" , max="100" ,
+                            step="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tabs">
+            <div class="tab encoder selected" id="encoder">encoder</div>
+            <div class="tab decoder" id="decoder">decoder</div>
+        </div>
+        <div class="tab-body">
+            <div class="encoder selected" id="encoder-body">
+                <h1>encoder</h1>
+                <textarea id="encode-input"></textarea>
+                <p>
+                    <button data-action="encode" id="encode-action">encode</button>
+                    <button data-action="clear" id="encode-clear">clear</button>
+                    <span class="transmission-time"> Transmission time：<span id="transmission-time"></span></span>
+                    <span class="transmission-time"> Increment times：<span id="increment-times"></span></span>
+                </p>
+                <div class="progress">
+                    <span id="progress"></span>
+                </div>
+
+                <h2>config</h2>
+                <label for="active-duration">Bit high duration: <span data-val></span> ms</label>
+                <input id="active-duration" type="range" value="40" min="1" , max="200" , step="1">
+
+                <label for="pause-duration">Pause between bytes: <span data-val></span> ms</label>
+                <input id="pause-duration" type="range" value="0" min="0" , max="200" , step="1">
+            </div>
+            <div class="decoder" id="decoder-body">
+                <h1>decoder</h1>
+                <code id="decode-code">0b00000000</code>
+                <textarea readonly id="decoder-output"></textarea>
+                <p>
+                    <button id="decode-clear">clear</button>
+                    <span class="state">
+                        <span id="reciever-sate">----</span>
+                    </span>
+                </p>
+
+                <h2>config</h2>
+                <label for="bin-value-threshold">Significant bin byte value threshold: <span data-val></span></label>
+                <input id="bin-value-threshold" type="range" value="200" min="1" , max="255" , step="1">
+                <label for="span-duration">Bit high span duration: <span data-val></span> ms</label>
+                <input id="span-duration" type="range" value="40" min="1" , max="200" , step="1">
+                <label for="unsherp-mask-gain">Unsherp mask gain: x<span data-val></span> </label>
+                <input id="unsherp-mask-gain" type="range" value="2" min="0" , max="3" , step="0.1">
+            </div>
+        </div>
+    </div>
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>
